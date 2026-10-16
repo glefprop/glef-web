@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" href="logo-glef.png">
+<title>GLEF Propiedades</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="GLEF Desarrollos y Propiedades. Venta, alquiler, administración y tasaciones en Córdoba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:wght@400;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: banda azul de marca de cabecera con ficha técnica tipo plano, servicios en grilla, propiedades filtrables, contacto en dos columnas */
+:root{
+  --bg:#F4F6FA; --surface:#FFFFFF; --ink:#13213A; --muted:#56637A; --line:#D6DDE9;
+  --sierra:#024AAB; --sierra-ink:#FFFFFF; --accent:#024AAB; --brass:#B9D1F5; --cta:#FFFFFF; --cta-ink:#024AAB;
+  --chip:#E6ECF6;
+  --display:"Libre Caslon Display","Libre Caslon Text",Georgia,serif;
+  --serif:"Libre Caslon Text",Georgia,serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1524; --surface:#151F33; --ink:#E7ECF5; --muted:#9BA8BF; --line:#26334D;
+  --sierra:#0A3478; --sierra-ink:#FFFFFF; --accent:#86AEEE; --brass:#B9D1F5; --cta:#FFFFFF; --cta-ink:#0A3478; --chip:#1D2840; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1524; --surface:#151F33; --ink:#E7ECF5; --muted:#9BA8BF; --line:#26334D;
+  --sierra:#0A3478; --sierra-ink:#FFFFFF; --accent:#86AEEE; --brass:#B9D1F5; --cta:#FFFFFF; --cta-ink:#0A3478; --chip:#1D2840; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.08;letter-spacing:-.01em;}
+h3{font-family:var(--serif);font-weight:700;line-height:1.2;}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+/* cabecera */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sierra)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sierra);color:var(--sierra-ink)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:block;line-height:0}
+.brand img{height:44px;width:auto}
+@media (max-width:420px){.brand img{height:36px}}
+nav.links{display:flex;gap:22px;align-items:center;font-size:.95rem}
+nav.links a{text-decoration:none;opacity:.85}
+nav.links a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:11px 20px;font:600 .95rem var(--body);text-decoration:none;cursor:pointer}
+.btn-brass{background:var(--cta);color:var(--cta-ink)}
+.btn-solid{background:var(--accent);color:var(--surface)}
+.btn-ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+@media (max-width:760px){nav.links a.hide-sm{display:none}}
+
+/* hero */
+.hero{background:var(--sierra);color:var(--sierra-ink)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;padding-block:56px 64px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,5.2vw,4rem)}
+.hero h1 em{font-style:normal;color:var(--brass)}
+.hero p.lead{max-width:34rem;font-size:1.12rem;opacity:.85;margin:20px 0 28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero :focus-visible,.top :focus-visible{outline-color:var(--sierra-ink)}
+.hero .eyebrow{color:var(--brass)}
+.ficha{border:1px solid color-mix(in srgb,var(--sierra-ink) 25%,transparent);border-radius:6px;padding:22px;font-family:var(--mono);font-size:.85rem;background:color-mix(in srgb,var(--sierra-ink) 4%,transparent);min-width:0}
+.ficha svg{width:100%;height:auto;display:block;margin-bottom:16px}
+.ficha dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0}
+.ficha dt{opacity:.6}
+.ficha dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.ficha .hd{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed color-mix(in srgb,var(--sierra-ink) 30%,transparent);padding-bottom:10px;margin-bottom:12px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:40px 48px}}
+
+section{padding-block:72px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:8px}
+
+/* servicios */
+.servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.serv{background:var(--bg);padding:26px 24px}
+.serv h3{font-size:1.15rem;margin-bottom:8px}
+.serv p{margin:0;color:var(--muted);font-size:.98rem}
+@media (max-width:860px){.servicios{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.servicios{grid-template-columns:1fr}}
+
+/* nosotros */
+.nosotros{padding-block:0 72px}
+.nos-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;border-top:1px solid var(--line);padding-top:56px}
+.nos-grid h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:8px}
+.nos-txt p{margin:0 0 24px;max-width:38rem}
+.cred{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0}
+.cred div{border-left:2px solid var(--accent);padding-left:12px;min-width:0}
+.cred dt{font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cred dd{margin:4px 0 0;font-family:var(--serif);font-weight:700}
+@media (max-width:760px){.nos-grid{grid-template-columns:1fr;gap:20px}.cred{grid-template-columns:1fr}}
+
+/* propiedades */
+#propiedades{background:var(--surface);border-block:1px solid var(--line)}
+.filtros{display:flex;gap:8px;flex-wrap:wrap}
+.filtros button{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:8px 16px;font:600 .9rem var(--body);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:24px}
+.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg);min-width:0}
+.card .foto{position:relative;aspect-ratio:16/10;max-width:100%;background:var(--chip);display:grid;place-items:center;overflow:hidden}
+.card .foto img{width:100%;height:100%;object-fit:cover}
+.card .foto svg{width:62%;height:auto;color:var(--muted)}
+.badge{position:absolute;top:12px;left:12px;font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:3px;background:var(--ink);color:var(--bg)}
+.badge.alq{background:var(--accent);color:var(--surface)}
+.estado{position:absolute;top:12px;right:12px;font:500 .72rem var(--mono);padding:5px 10px;border-radius:3px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.card .body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{font-size:1.2rem}
+.zona{color:var(--muted);font-size:.95rem;margin-top:-6px}
+.precio{font-family:var(--serif);font-weight:700;font-size:1.45rem;font-variant-numeric:tabular-nums}
+.precio small{display:block;font:400 .85rem var(--body);color:var(--muted)}
+.specs{display:flex;flex-wrap:wrap;gap:6px 16px;font:.85rem var(--mono);color:var(--ink);border-block:1px dashed var(--line);padding-block:10px;margin:0;list-style:none;padding-left:0}
+.extras{margin:0;padding-left:18px;color:var(--muted);font-size:.95rem}
+.nota{font-size:.92rem;color:var(--accent);font-weight:600}
+.card .acciones-wrap{}
+.card .body > .acciones{margin-top:auto;padding-top:6px}
+.card .acciones .btn{width:100%;justify-content:center;background:var(--accent);color:var(--surface)}
+.vacio{color:var(--muted);padding:24px 0}
+
+
+.card .foto{border:0;padding:0;cursor:pointer;width:100%;color:inherit;font:inherit}
+.card .foto img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card .foto:hover img{transform:scale(1.03)}
+@media (prefers-reduced-motion:reduce){.card .foto img{transition:none}}
+.ph{display:grid;place-items:center;width:100%;height:100%}
+.ph svg{width:62%;height:auto;color:var(--muted)}
+.nfotos{position:absolute;bottom:12px;right:12px;font:500 .72rem var(--mono);padding:4px 9px;border-radius:3px;background:rgba(10,20,40,.7);color:#fff}
+.card .acciones{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card .acciones .btn{width:100%;justify-content:center}
+.btn-line{background:transparent!important;color:var(--accent)!important;border:1.5px solid var(--accent)}
+.dlg{width:min(1040px,calc(100% - 24px));max-height:calc(100% - 24px);padding:0;border:0;border-radius:8px;background:var(--surface);color:var(--ink);overflow:auto}
+.dlg::backdrop{background:rgba(8,16,32,.6)}
+.dlg-close{position:sticky;top:0;float:right;margin:12px;z-index:2;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:600 .85rem var(--body);cursor:pointer}
+.dlg-body{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;padding:20px}
+.gal{min-width:0}
+.gal-main{aspect-ratio:4/3;max-width:100%;background:var(--chip);border-radius:6px;overflow:hidden}
+.gal-main img{width:100%;height:100%;object-fit:cover}
+.gal-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}
+.gal-thumbs button{aspect-ratio:4/3;padding:0;border:2px solid transparent;border-radius:4px;overflow:hidden;background:var(--chip);cursor:pointer}
+.gal-thumbs button[aria-pressed="true"]{border-color:var(--accent)}
+.gal-thumbs img{width:100%;height:100%;object-fit:cover}
+.dlg-info{display:flex;flex-direction:column;gap:12px;min-width:0}
+.dlg-info h2{font-size:clamp(1.5rem,3vw,2.1rem)}
+.dlg-info p{margin:0}
+.dlg-info .btn{align-self:flex-start;margin-top:6px}
+@media (max-width:760px){.dlg-body{grid-template-columns:1fr;padding:16px}}
+
+/* contacto */
+.contacto{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+.datos p{margin:0 0 6px}
+.datos .lbl{font:500 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:18px}
+.datos .pendiente{color:var(--accent);font-weight:600}
+form{display:grid;gap:14px;min-width:0}
+form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-size:.9rem;font-weight:600}
+input,select,textarea{font:inherit;font-weight:400;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:11px 12px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.msg{font-size:.95rem;min-height:1.4em}
+@media (max-width:760px){.contacto{grid-template-columns:1fr}form .row{grid-template-columns:1fr}}
+
+.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:6;display:inline-flex;align-items:center;gap:8px;background:#1F9E55;color:#fff;text-decoration:none;font-weight:600;padding:12px 18px 12px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(10,30,60,.25)}
+.wa-float:hover{background:#178746}
+@media (max-width:540px){.wa-float span{display:none}.wa-float{padding:14px}}
+
+footer{background:var(--sierra);color:var(--sierra-ink);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:28px;opacity:.85}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="logo-glef.png" alt="GLEF Desarrollos y Propiedades" width="900" height="263"></a>
+    <nav class="links">
+      <a class="hide-sm" href="#servicios">Servicios</a>
+      <a class="hide-sm" href="#propiedades">Propiedades</a>
+      <a class="hide-sm" href="#nosotros">Nosotros</a>
+      <a class="btn btn-brass" href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Córdoba · Sierras Chicas · Gran Córdoba</div>
+        <h1 style="margin-top:14px">Construimos, vendemos y administramos <em>propiedades en Córdoba</em></h1>
+        <p class="lead">Desarrollos propios a estrenar, venta y alquiler de inmuebles, administración de alquileres y tasaciones profesionales. Recibimos propiedades y vehículos en parte de pago.</p>
+        <div class="ctas">
+          <a class="btn btn-brass" href="#propiedades">Ver disponibles</a>
+          <a class="btn btn-ghost" href="#contacto">Pedir una tasación</a>
+        </div>
+      </div>
+      <aside class="ficha" aria-label="Desarrollo destacado">
+        <div class="hd"><span>DESARROLLO PROPIO</span><span>Q. DE MANANTIALES</span></div>
+        <svg viewBox="0 0 320 150" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <line x1="6" y1="138" x2="314" y2="138" stroke-dasharray="4 4" opacity=".5"/>
+          <path d="M28 138V60l66-38 66 38v78"/><path d="M160 138V60l66-38 66 38v78"/>
+          <rect x="48" y="78" width="30" height="22"/><rect x="110" y="78" width="30" height="22"/>
+          <rect x="180" y="78" width="30" height="22"/><rect x="242" y="78" width="30" height="22"/>
+          <rect x="78" y="108" width="32" height="30"/><rect x="210" y="108" width="32" height="30"/>
+          <line x1="40" y1="70" x2="148" y2="70" opacity=".5"/><line x1="172" y1="70" x2="280" y2="70" opacity=".5"/>
+          <text x="94" y="15" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" font-family="IBM Plex Mono, monospace">UNIDAD 1</text>
+          <text x="226" y="15" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" font-family="IBM Plex Mono, monospace">UNIDAD 2</text>
+        </svg>
+        <dl>
+          <dt>Tipología</dt><dd>Dúplex 3 dormitorios</dd>
+          <dt>Sup. cubierta</dt><dd>135 m²</dd>
+          <dt>Baños</dt><dd>2</dd>
+          <dt>Calefacción</dt><dd>Caldera</dd>
+          <dt>Entrega</dt><dd>Ene/Feb 2027</dd>
+          <dt>Contado</dt><dd>USD 145.000</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sec-head"><div><div class="eyebrow">Qué hacemos</div><h2>Servicios inmobiliarios</h2></div></div>
+      <div class="servicios">
+        <div class="serv"><h3>Desarrollos propios</h3><p>Construimos viviendas para venta, con precio de contado y financiado.</p></div>
+        <div class="serv"><h3>Compraventa</h3><p>Publicamos y comercializamos tu propiedad, y te acompañamos hasta la escritura.</p></div>
+        <div class="serv"><h3>Alquileres</h3><p>Alquiler de viviendas, oficinas y locales, con contratos y ajustes claros.</p></div>
+        <div class="serv"><h3>Administración</h3><p>Cobro, recibos, ajustes y seguimiento de tus propiedades alquiladas.</p></div>
+        <div class="serv"><h3>Tasaciones</h3><p>Tasaciones profesionales para venta, alquiler, sucesiones y particiones.</p></div>
+        <div class="serv"><h3>Permutas y créditos</h3><p>Recibimos propiedades y vehículos en parte de pago y asesoramos en operaciones con crédito hipotecario.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="nosotros">
+    <div class="wrap nos-grid">
+      <div><div class="eyebrow">Quién está detrás</div><h2>Lorenzo Ghione</h2></div>
+      <div class="nos-txt">
+        <p>Martillero Público y Corredor Inmobiliario recibido en la Universidad Siglo 21, actualmente cursando la Licenciatura en Desarrollo de Negocios Inmobiliarios. Cada operación de GLEF está respaldada por un profesional matriculado.</p>
+        <dl class="cred">
+          <div><dt>Matrícula</dt><dd>CPI N° 8518</dd></div>
+          <div><dt>Título</dt><dd>Martillero y Corredor · Siglo 21, 2026</dd></div>
+          <div><dt>En curso</dt><dd>Lic. en Desarrollo de Negocios Inmobiliarios</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="propiedades">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Disponibles ahora</div><h2>Propiedades</h2></div>
+        <div class="filtros" role="group" aria-label="Filtrar por operación">
+          <button type="button" data-f="Todas" aria-pressed="true">Todas</button>
+          <button type="button" data-f="Venta" aria-pressed="false">Venta</button>
+          <button type="button" data-f="Alquiler" aria-pressed="false">Alquiler</button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap contacto">
+      <div class="datos">
+        <div class="eyebrow">Contacto</div>
+        <h2 style="margin:8px 0 16px;font-size:clamp(1.8rem,3.4vw,2.6rem)">Consultas, tasaciones y captación</h2>
+        <p>¿Querés vender, alquilar o tasar? Escribinos y te respondemos a la brevedad.</p>
+        <p class="lbl">WhatsApp</p><p id="dato-wa"></p>
+        <p class="lbl">Llamadas</p><p id="dato-tel"></p>
+        <p class="lbl">Email</p><p id="dato-mail"></p>
+        <p class="lbl">Zona</p><p>Córdoba, Argentina</p>
+        <p class="lbl">Responsable</p><p>Lorenzo Ghione · Martillero Público y Corredor Inmobiliario · Matrícula CPI N° 8518</p>
+      </div>
+      <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="empresa" id="form">
+        <input type="hidden" name="form-name" value="contacto">
+        <p hidden><label>No completar <input name="empresa" id="f-hp"></label></p>
+        <div class="row">
+          <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" required autocomplete="name"></label>
+          <label for="f-tel">Teléfono<input id="f-tel" name="telefono" type="tel" required autocomplete="tel"></label>
+        </div>
+        <label for="f-motivo">Motivo
+          <select id="f-motivo" name="motivo">
+            <option>Quiero comprar</option><option>Quiero alquilar</option><option>Quiero vender mi propiedad</option>
+            <option>Quiero poner mi propiedad en alquiler</option><option>Necesito una tasación</option><option>Otro</option>
+          </select>
+        </label>
+        <label for="f-msg">Mensaje<textarea id="f-msg" name="mensaje" placeholder="Contanos qué buscás o qué propiedad tenés"></textarea></label>
+        <div><button class="btn btn-solid" type="submit">Enviar consulta</button></div>
+        <p class="msg" id="form-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<a id="wa-float" class="wa-float" href="#contacto" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg><span>WhatsApp</span></a>
+
+<dialog id="ficha" class="dlg" aria-label="Ficha de la propiedad"><button type="button" class="dlg-close" aria-label="Cerrar">Cerrar</button><div class="dlg-body"></div></dialog>
+
+<footer><div class="wrap"><span>GLEF Desarrollos y Propiedades · Córdoba</span><span>Lorenzo Ghione · Martillero Público y Corredor Inmobiliario · CPI N° 8518</span></div></footer>
+
+<script>
+/* ===== CONFIGURACIÓN: datos de contacto ===== */
+const CONFIG = {
+  whatsapp: "5493546573461",          // sin + ni espacios
+  whatsappVisible: "+54 9 3546 57-3461",
+  telefono: "5493513405158",
+  telefonoVisible: "+54 9 351 340-5158",
+  email: "glefpropiedades@gmail.com"
+};
+
+/* ===== PROPIEDADES: agregar, editar o quitar acá ===== */
+const PROPIEDADES = [
+ {
+  "id": "duplex-manantiales",
+  "operacion": "Venta",
+  "tipo": "duplex",
+  "estado": "En construcción",
+  "titulo": "Dúplex de 3 dormitorios en Quebradas de Manantiales",
+  "zona": "Quebradas de Manantiales, Córdoba",
+  "precio": "USD 145.000",
+  "precioNota": "De contado · USD 150.000 financiado · Expensas $300.000",
+  "specs": [
+   "135 m² cub.",
+   "5 amb.",
+   "3 dorm.",
+   "2 baños + toilette",
+   "1 cochera"
+  ],
+  "descripcion": [
+   "Dúplex a estrenar en uno de los barrios de mayor crecimiento del sur de la ciudad, con acceso controlado y servicio de seguridad.",
+   "Construcción tradicional, muy luminoso, con calefacción por caldera y barandas incluidas. Entrega estimada enero/febrero 2027."
+  ],
+  "extras": [
+   "Calefacción por caldera",
+   "Construcción tradicional",
+   "Barrio con acceso controlado",
+   "Entrega estimada enero/febrero 2027"
+  ],
+  "nota": "Se reciben propiedades y vehículos en parte de pago",
+  "fotos": [
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/19/95/1200x1200/2084548760.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/19/95/1200x1200/2086022322.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/19/95/1200x1200/2084548762.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/19/95/1200x1200/2084548761.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/19/95/1200x1200/2086022318.jpg"
+  ]
+ },
+ {
+  "id": "cabana-valle-del-sol",
+  "operacion": "Venta",
+  "tipo": "casa",
+  "estado": "A estrenar",
+  "titulo": "Cabaña amoblada en Valle del Sol",
+  "zona": "Complejo Mirador de las Sierras 4, Valle del Sol, Villa Santa Cruz del Lago",
+  "precio": "USD 53.000",
+  "precioNota": "Se entrega amoblada y equipada",
+  "specs": [
+   "60 m² cub.",
+   "78 m² tot.",
+   "2 dorm.",
+   "1 baño + toilette",
+   "Cochera semicubierta"
+  ],
+  "descripcion": [
+   "Cabaña a estrenar a minutos de Villa Carlos Paz, ideal para vivienda permanente, escapadas de fin de semana o renta turística.",
+   "Living comedor, cocina amplia con mesada de granito, dos dormitorios, baño completo, toilette y asador propio. Se entrega con anafe, termotanque, heladera con freezer, juego de comedor, sillón, Smart TV 43\", mesas de luz y placard.",
+   "El complejo tiene pileta climatizada con energía solar, jacuzzi, gimnasio, juegos para chicos, bosque nativo y portón automático."
+  ],
+  "extras": [
+   "Asador propio",
+   "Pileta climatizada y jacuzzi en el complejo",
+   "Gimnasio",
+   "Apta renta turística"
+  ],
+  "nota": "",
+  "fotos": [
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/35/92/62/1200x1200/2083503073.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/35/92/62/1200x1200/2083503079.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/35/92/62/1200x1200/2083503077.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/35/92/62/1200x1200/2083503075.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/35/92/62/1200x1200/2083503072.jpg"
+  ]
+ },
+ {
+  "id": "depto-olmos-centro",
+  "operacion": "Venta",
+  "tipo": "depto",
+  "estado": "Reciclado",
+  "titulo": "Departamento de 1 dormitorio, piso 14 con vista abierta",
+  "zona": "Av. Emilio Olmos, Centro, Córdoba",
+  "precio": "USD 46.000",
+  "precioNota": "Apto crédito hipotecario · Expensas $85.000",
+  "specs": [
+   "34,5 m² cub.",
+   "2 amb.",
+   "1 dorm.",
+   "1 baño",
+   "Piso 14"
+  ],
+  "descripcion": [
+   "Departamento totalmente reciclado en pleno centro, en piso 14 con vista abierta y mucha luz natural.",
+   "Cocina comedor, dormitorio y baño. Cerca de transporte, comercios, universidades y oficinas: sirve para vivir, para estudiantes o como inversión para alquilar."
+  ],
+  "extras": [
+   "Totalmente reciclado",
+   "Vista panorámica",
+   "Apto crédito",
+   "Antigüedad: 15 años"
+  ],
+  "nota": "",
+  "fotos": [
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713293.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713289.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713287.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713288.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713290.jpg"
+  ]
+ },
+ {
+  "id": "depto-alta-cordoba",
+  "operacion": "Alquiler",
+  "tipo": "depto",
+  "estado": "Disponible",
+  "titulo": "Departamento de 1 dormitorio en Alta Córdoba",
+  "zona": "Isabel la Católica al 1000, Alta Córdoba",
+  "precio": "$600.000 / mes",
+  "precioNota": "Expensas $90.000",
+  "specs": [
+   "38,76 m² cub.",
+   "1 dorm.",
+   "1 baño",
+   "2° piso al frente"
+  ],
+  "descripcion": [
+   "Departamento muy luminoso, en segundo piso al frente, con living comedor con cocina, dormitorio y baño.",
+   "Cerca del centro, transporte, comercios, escuelas y servicios. Ideal para estudiantes, profesionales o parejas."
+  ],
+  "extras": [
+   "Requisitos: depósito de un mes",
+   "Garantía con recibos de sueldo de tres personas",
+   "Honorarios: 5% del contrato a cargo del inquilino",
+   "Antigüedad: 13 años"
+  ],
+  "nota": "",
+  "fotos": [
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/54/87/1200x1200/2084641303.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/54/87/1200x1200/2084641301.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/54/87/1200x1200/2084641300.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/54/87/1200x1200/2084641304.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/54/87/1200x1200/2084641297.jpg"
+  ]
+ },
+ {
+  "id": "oficinas-villa-allende",
+  "operacion": "Alquiler",
+  "tipo": "oficina",
+  "estado": "Entrega nov. 2026",
+  "titulo": "Oficinas 4, 5 y 6 en edificio Hva",
+  "zona": "Colectora Av. Padre Luchesse, Villa Allende",
+  "precio": "USD 700 / mes c/u",
+  "precioNota": "Dos oficinas (66 m²): USD 1.400 · Las tres (99 m²): USD 2.100",
+  "specs": [
+   "33 m² c/u",
+   "1 baño",
+   "1 cochera",
+   "A estrenar"
+  ],
+  "descripcion": [
+   "Oficinas en primer piso con acceso controlado, en edificio de uso mixto a la entrada de Villa Allende: a metros del Driving, a 7 minutos del centro y a 8 del aeropuerto.",
+   "Ventanales amplios con luz y ventilación natural, espacios adaptables. El edificio suma recepción, lounge equipado para reuniones online, kitchenette con comedor, terraza de 300 m² con vista a las sierras, quincho cubierto con asador, parque y estacionamiento de cortesía para 70 autos."
+  ],
+  "extras": [
+   "Terraza de 300 m² con vista a las sierras",
+   "Quincho para eventos",
+   "Estacionamiento para 70 autos",
+   "Tira de 13 locales en planta baja"
+  ],
+  "nota": "",
+  "fotos": [
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/00/65/1200x1200/2084512505.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/00/65/1200x1200/2084512465.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/00/65/1200x1200/2084512476.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/00/65/1200x1200/2084512474.jpg",
+   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/40/00/65/1200x1200/2084512475.jpg"
+  ]
+ }
+];
+
+/* ===== no hace falta tocar debajo de esta línea ===== */
+const ICONOS = {
+  duplex:'<svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 66V30l26-20 26 20v36M60 66V30l26-20 26 20v36"/><rect x="26" y="46" width="14" height="20"/><rect x="78" y="46" width="14" height="20"/><line x1="2" y1="66" x2="118" y2="66"/></svg>',
+  oficina:'<svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2"><rect x="30" y="6" width="60" height="60"/><path d="M40 16h12v10H40zM68 16h12v10H68zM40 34h12v10H40zM68 34h12v10H68z"/><rect x="54" y="50" width="12" height="16"/><line x1="2" y1="66" x2="118" y2="66"/></svg>',
+  casa:'<svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 66V32l38-26 38 26v34"/><rect x="52" y="44" width="16" height="22"/><rect x="32" y="38" width="12" height="10"/><rect x="76" y="38" width="12" height="10"/><line x1="2" y1="66" x2="118" y2="66"/></svg>',
+  depto:'<svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2"><rect x="38" y="4" width="44" height="62"/><path d="M46 12h10v8H46zM64 12h10v8H64zM46 28h10v8H46zM64 28h10v8H64zM46 44h10v8H46zM64 44h10v8H64z"/><line x1="2" y1="66" x2="118" y2="66"/></svg>',
+  lote:'<svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 60l20-44h56l20 44z" stroke-dasharray="5 4"/><line x1="2" y1="66" x2="118" y2="66"/></svg>'
+};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const waLink = txt => CONFIG.whatsapp ? `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}` : "#contacto";
+
+function imgErr(img){
+  const src = img.getAttribute("src") || "";
+  if(src.includes("/resize/")){ img.src = src.replace("/resize/","/").replace("/1200x1200/","/360x266/"); return; }
+  const box = img.closest("[data-tipo]");
+  img.replaceWith(Object.assign(document.createElement("span"), {className:"ph", innerHTML: ICONOS[box?.dataset.tipo] || ICONOS.casa}));
+}
+const foto = (p, i, cls="") => p.fotos && p.fotos[i]
+  ? `<img class="${cls}" src="${esc(p.fotos[i])}" alt="${esc(p.titulo)}, foto ${i+1}" loading="lazy" referrerpolicy="no-referrer" onerror="imgErr(this)">`
+  : `<span class="ph">${ICONOS[p.tipo] || ICONOS.casa}</span>`;
+
+function render(filtro){
+  const lista = PROPIEDADES.filter(p => filtro === "Todas" || p.operacion === filtro);
+  const grid = document.getElementById("grid");
+  if(!lista.length){ grid.innerHTML = '<p class="vacio">No hay propiedades en esta categoría por ahora.</p>'; return; }
+  grid.innerHTML = lista.map(p => `
+    <article class="card" id="${esc(p.id)}">
+      <button type="button" class="foto" data-tipo="${esc(p.tipo)}" data-open="${esc(p.id)}" aria-label="Ver ficha: ${esc(p.titulo)}">
+        ${foto(p,0)}
+        <span class="badge ${p.operacion === "Alquiler" ? "alq" : ""}">${esc(p.operacion)}</span>
+        ${p.estado ? `<span class="estado">${esc(p.estado)}</span>` : ""}
+        ${p.fotos && p.fotos.length > 1 ? `<span class="nfotos">${p.fotos.length} fotos</span>` : ""}
+      </button>
+      <div class="body">
+        <h3>${esc(p.titulo)}</h3>
+        <div class="zona">${esc(p.zona)}</div>
+        <div class="precio">${esc(p.precio)}${p.precioNota ? `<small>${esc(p.precioNota)}</small>` : ""}</div>
+        <ul class="specs">${(p.specs||[]).map(s => `<li>${esc(s)}</li>`).join("")}</ul>
+        ${p.nota ? `<div class="nota">${esc(p.nota)}</div>` : ""}
+        <div class="acciones">
+          <button type="button" class="btn btn-line" data-open="${esc(p.id)}">Ver ficha</button>
+          <a class="btn" href="${waLink("Hola, quiero consultar por: " + p.titulo)}" target="_blank" rel="noopener">Consultar</a>
+        </div>
+      </div>
+    </article>`).join("");
+}
+
+const dlg = document.getElementById("ficha");
+function abrir(id){
+  const p = PROPIEDADES.find(x => x.id === id); if(!p) return;
+  const fs = p.fotos && p.fotos.length ? p.fotos : [null];
+  dlg.querySelector(".dlg-body").innerHTML = `
+    <div class="gal" data-tipo="${esc(p.tipo)}">
+      <div class="gal-main">${foto(p,0,"main")}</div>
+      ${fs.length > 1 ? `<div class="gal-thumbs">${fs.map((_,i) => `<button type="button" data-i="${i}" aria-label="Foto ${i+1}" aria-pressed="${i===0}">${foto(p,i)}</button>`).join("")}</div>` : ""}
+    </div>
+    <div class="dlg-info">
+      <div class="eyebrow">${esc(p.operacion)} · ${esc(p.estado || "")}</div>
+      <h2>${esc(p.titulo)}</h2>
+      <div class="zona">${esc(p.zona)}</div>
+      <div class="precio">${esc(p.precio)}${p.precioNota ? `<small>${esc(p.precioNota)}</small>` : ""}</div>
+      <ul class="specs">${(p.specs||[]).map(s => `<li>${esc(s)}</li>`).join("")}</ul>
+      ${(p.descripcion||[]).map(t => `<p>${esc(t)}</p>`).join("")}
+      ${p.extras && p.extras.length ? `<ul class="extras">${p.extras.map(e => `<li>${esc(e)}</li>`).join("")}</ul>` : ""}
+      ${p.nota ? `<div class="nota">${esc(p.nota)}</div>` : ""}
+      <a class="btn btn-solid" href="${waLink("Hola, quiero consultar por: " + p.titulo)}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>`;
+  dlg.querySelectorAll(".gal-thumbs button").forEach(b => b.addEventListener("click", () => {
+    const main = dlg.querySelector(".gal-main");
+    main.innerHTML = foto(p, +b.dataset.i, "main");
+    dlg.querySelectorAll(".gal-thumbs button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  }));
+  if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
+}
+document.getElementById("grid").addEventListener("click", e => { const t = e.target.closest("[data-open]"); if(t) abrir(t.dataset.open); });
+dlg.querySelector(".dlg-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if(e.target === dlg) dlg.close(); });
+
+document.querySelectorAll(".filtros button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".filtros button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  render(b.dataset.f);
+}));
+
+document.getElementById("dato-wa").innerHTML = `<a href="${waLink("Hola, quiero hacer una consulta")}" target="_blank" rel="noopener">${esc(CONFIG.whatsappVisible)}</a>`;
+document.getElementById("dato-tel").innerHTML = `<a href="tel:+${esc(CONFIG.telefono)}">${esc(CONFIG.telefonoVisible)}</a>`;
+document.getElementById("dato-mail").innerHTML = `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>`;
+document.getElementById("wa-float").href = waLink("Hola, quiero hacer una consulta");
+
+document.getElementById("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, msg = document.getElementById("form-msg");
+  msg.textContent = "Enviando...";
+  try{
+    const r = await fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:new URLSearchParams(new FormData(f)).toString()});
+    if(!r.ok) throw 0;
+    f.reset(); msg.textContent = "Consulta enviada. Te contactamos a la brevedad.";
+  }catch(_){
+    msg.textContent = "No se pudo enviar desde esta vista. Escribinos por WhatsApp o email.";
+  }
+});
+
+render("Todas");
+</script>
+
+</body>
+</html>
