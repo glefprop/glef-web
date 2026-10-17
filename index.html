@@ -118,6 +118,28 @@ section{padding-block:72px}
 .nosotros{padding-top:0}
 #mercado + #nosotros .nos-grid{border-top:0}
 
+/* calculadora */
+#calculadora{background:var(--surface);border-block:1px solid var(--line)}
+.calc{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:start}
+.calc-form{display:grid;gap:14px;min-width:0}
+.calc-form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc-form label{display:grid;gap:6px;font-size:.9rem;font-weight:600}
+.calc-form input,.calc-form select{font:inherit;font-weight:400;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:11px 12px;width:100%}
+.calc-nota{margin:0;font-size:.85rem;color:var(--muted)}
+.calc-res{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:22px;display:grid;gap:18px;min-width:0}
+.calc-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.calc-res .cat{font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.calc-big{font-family:var(--display);font-size:clamp(2rem,4.5vw,2.8rem);color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}
+.calc-next{font-family:var(--serif);font-weight:700;font-size:1.1rem;margin-top:6px}
+.calc-tabla{overflow-x:auto;max-height:340px;overflow-y:auto;border:1px solid var(--line);border-radius:4px}
+.calc-tabla table{width:100%;border-collapse:collapse;font-size:.9rem;font-variant-numeric:tabular-nums}
+.calc-tabla th{position:sticky;top:0;background:var(--chip);text-align:left;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:9px 10px;color:var(--muted)}
+.calc-tabla td{padding:9px 10px;border-top:1px solid var(--line);white-space:nowrap}
+.calc-tabla .num{text-align:right}
+.calc-tabla tr.pend td{color:var(--muted);font-style:italic}
+.calc-res .btn{justify-self:start}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
+
 /* nosotros */
 .nosotros{padding-block:0 72px}
 .nos-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;border-top:1px solid var(--line);padding-top:56px}
@@ -220,6 +242,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
       <a class="hide-sm" href="#servicios">Servicios</a>
       <a class="hide-sm" href="#propiedades">Propiedades</a>
       <a class="hide-sm" href="#mercado">Mercado</a>
+      <a class="hide-sm" href="#calculadora">Calculadora</a>
       <a class="hide-sm" href="#nosotros">Nosotros</a>
       <a class="btn btn-brass" href="#contacto">Contacto</a>
     </nav>
@@ -317,6 +340,45 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <p class="merc-act">Datos recopilados de portales, cámaras y medios. Actualizado al <span id="merc-fecha"></span>.</p>
       </div>
       <div class="merc-grid" id="merc-grid"></div>
+    </div>
+  </section>
+
+  <section id="calculadora">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Herramienta</div><h2>Calculadora de alquileres</h2></div>
+        <p class="merc-act">Calculá cuánto tenés que pagar después de cada ajuste según el índice de tu contrato.</p>
+      </div>
+      <div class="calc">
+        <form class="calc-form" id="calc-form">
+          <label for="c-monto">Alquiler inicial ($)<input id="c-monto" inputmode="numeric" value="600.000" autocomplete="off"></label>
+          <div class="row">
+            <label for="c-mes">Mes de inicio<select id="c-mes"></select></label>
+            <label for="c-anio">Año<select id="c-anio"></select></label>
+          </div>
+          <label for="c-indice">Índice de ajuste
+            <select id="c-indice">
+              <option value="ipc">IPC (INDEC)</option>
+              <option value="fijo">Porcentaje fijo</option>
+            </select>
+          </label>
+          <div class="row">
+            <label for="c-per">Actualización cada
+              <select id="c-per"><option value="3">3 meses</option><option value="4">4 meses</option><option value="6">6 meses</option><option value="12">12 meses</option></select>
+            </label>
+            <label for="c-pct" id="c-pct-wrap" hidden>Porcentaje por ajuste<input id="c-pct" inputmode="decimal" value="10"></label>
+          </div>
+          <p class="calc-nota">Con IPC se aplica la variación acumulada de los últimos meses publicados por el INDEC al momento de cada ajuste (con dos meses de desfase, porque el índice de un mes se publica a mediados del siguiente). Datos disponibles hasta <span id="c-ultimo"></span>.</p>
+        </form>
+        <div class="calc-res" aria-live="polite">
+          <div class="calc-top">
+            <div><div class="cat">Alquiler actual</div><div class="calc-big" id="c-actual"></div></div>
+            <div><div class="cat">Próximo ajuste</div><div class="calc-next" id="c-prox"></div></div>
+          </div>
+          <div class="calc-tabla"><table><thead><tr><th>Desde</th><th>Índice aplicado</th><th class="num">Ajuste</th><th class="num">Alquiler</th></tr></thead><tbody id="c-tabla"></tbody></table></div>
+          <a class="btn btn-solid" id="c-wa" href="#contacto" target="_blank" rel="noopener">Quiero que administren mi alquiler</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -676,6 +738,9 @@ const MERCADO = [
  }
 ];
 
+/* ===== IPC INDEC (nivel general nacional, índice base dic-2016=100). Fuente: datos.gob.ar serie 148.3_INIVELNAL_DICI_M_26 ===== */
+const IPC = {"2022-12":1134.5875,"2023-01":1202.979,"2023-02":1282.7091,"2023-03":1381.1601,"2023-04":1497.2147,"2023-05":1613.5895,"2023-06":1709.6115,"2023-07":1818.0838,"2023-08":2044.2832,"2023-09":2304.9242,"2023-10":2496.273,"2023-11":2816.0628,"2023-12":3533.1922,"2024-01":4261.5324,"2024-02":4825.7881,"2024-03":5357.0929,"2024-04":5830.2271,"2024-05":6073.7,"2024-06":6351.7145,"2024-07":6607.7479,"2024-08":6883.4412,"2024-09":7122.2421,"2024-10":7313.9542,"2024-11":7491.4314,"2024-12":7694.0075,"2025-01":7864.1257,"2025-02":8052.9927,"2025-03":8353.3158,"2025-04":8585.6078,"2025-05":8714.4871,"2025-06":8855.5681,"2025-07":9023.973,"2025-08":9193.2441,"2025-09":9384.0922,"2025-10":9603.8623,"2025-11":9841.3581,"2025-12":10121.3715,"2026-01":10413.0309,"2026-02":10714.6255,"2026-03":11077.0608,"2026-04":11363.0904,"2026-05":11607.3937,"2026-06":11826.4103,"2026-07":12076.3937,"2026-08":12276.766};
+
 /* ===== OBRAS EN PROCESO ===== */
 const OBRAS = [
  {
@@ -823,6 +888,76 @@ document.getElementById("merc-grid").innerHTML = MERCADO.map(n => `
     <p>${esc(n.texto)}</p>
     <div class="src">Fuente: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.fuente)}</a> · ${esc(n.fecha)}</div>
   </article>`).join("");
+
+/* ===== calculadora de alquileres ===== */
+(function(){
+  const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  const $ = id => document.getElementById(id);
+  const key = (y,m) => y + "-" + String(m+1).padStart(2,"0");
+  const add = (y,m,n) => { const t = y*12 + m + n; return [Math.floor(t/12), ((t%12)+12)%12]; };
+  const fmt$ = n => "$ " + Math.round(n).toLocaleString("es-AR");
+  const mesTxt = (y,m) => MESES[m].slice(0,3) + " " + y;
+  const hoy = new Date();
+  const ultimoIPC = () => Object.keys(IPC).sort().pop();
+
+  const selM = $("c-mes"), selA = $("c-anio");
+  selM.innerHTML = MESES.map((n,i) => `<option value="${i}">${n[0].toUpperCase()+n.slice(1)}</option>`).join("");
+  for(let y = hoy.getFullYear(); y >= 2023; y--) selA.insertAdjacentHTML("beforeend", `<option value="${y}">${y}</option>`);
+  const [iy, im] = add(hoy.getFullYear(), hoy.getMonth(), -12);
+  selA.value = iy; selM.value = im;
+
+  function parseNum(v){ return parseFloat(String(v).replace(/\./g,"").replace(",", ".")) || 0; }
+
+  function calc(){
+    const monto = parseNum($("c-monto").value);
+    const y0 = +selA.value, m0 = +selM.value, per = +$("c-per").value;
+    const tipo = $("c-indice").value, pct = parseNum($("c-pct").value) / 100;
+    $("c-pct-wrap").hidden = tipo !== "fijo";
+    const [uy, um] = ultimoIPC().split("-").map(Number);
+    $("c-ultimo").textContent = MESES[um-1] + " " + uy;
+    const rows = [`<tr><td>${mesTxt(y0,m0)}</td><td>Inicio del contrato</td><td class="num">–</td><td class="num">${fmt$(monto)}</td></tr>`];
+    let alq = monto, actual = monto, prox = null;
+    const hoyT = hoy.getFullYear()*12 + hoy.getMonth();
+    for(let i = 1; i <= 36/per; i++){
+      const [y,m] = add(y0, m0, i*per);
+      const t = y*12 + m;
+      let factor = null, desc = "";
+      if(tipo === "fijo"){ factor = 1 + pct; desc = "Fijo " + (pct*100).toLocaleString("es-AR") + "%"; }
+      else {
+        const [fy,fm] = add(y,m,-2), [iy2,im2] = add(y,m,-2-per);
+        const a = IPC[key(fy,fm)], b = IPC[key(iy2,im2)];
+        desc = "IPC " + mesTxt(...add(iy2,im2,1)) + " a " + mesTxt(fy,fm);
+        if(a && b) factor = a/b;
+      }
+      if(factor === null){
+        rows.push(`<tr class="pend"><td>${mesTxt(y,m)}</td><td>${desc}</td><td class="num">Pendiente</td><td class="num">–</td></tr>`);
+        if(!prox) prox = mesTxt(y,m) + (t <= hoyT ? " (falta publicar el IPC)" : "");
+        if(t > hoyT + 12) break;
+        continue;
+      }
+      alq = alq * factor;
+      rows.push(`<tr><td>${mesTxt(y,m)}</td><td>${desc}</td><td class="num">+${((factor-1)*100).toFixed(2).replace(".",",")}%</td><td class="num">${fmt$(alq)}</td></tr>`);
+      if(t <= hoyT) actual = alq; else if(!prox) prox = mesTxt(y,m) + " · " + fmt$(alq);
+      if(t > hoyT + 12) break;
+    }
+    $("c-actual").textContent = fmt$(actual);
+    $("c-prox").textContent = prox || "Fin del contrato";
+    $("c-tabla").innerHTML = rows.join("");
+  }
+  $("calc-form").addEventListener("input", calc);
+  $("calc-form").addEventListener("submit", e => e.preventDefault());
+  $("c-monto").addEventListener("blur", e => { const n = parseNum(e.target.value); if(n) e.target.value = Math.round(n).toLocaleString("es-AR"); });
+  $("c-wa").href = waLink("Hola, quiero consultar por la administración de mi alquiler.");
+  calc();
+
+  // Si hay datos más nuevos en la API oficial, los suma
+  try{
+    fetch("https://apis.datos.gob.ar/series/api/series/?ids=148.3_INIVELNAL_DICI_M_26&format=json&start_date=" + ultimoIPC() + "-01")
+      .then(r => r.ok ? r.json() : null)
+      .then(j => { if(!j || !j.data) return; let n = 0; j.data.forEach(([d,v]) => { const k = d.slice(0,7); if(v && !IPC[k]){ IPC[k] = v; n++; } }); if(n) calc(); })
+      .catch(() => {});
+  }catch(_){}
+})();
 
 render("Todas");
 </script>
