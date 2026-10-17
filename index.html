@@ -283,7 +283,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <p class="lead">Compra, venta, alquileres, administración y tasaciones profesionales. En nuestros desarrollos propios, financiación directa y permutas por vehículos y propiedades.</p>
         <div class="ctas">
           <a class="btn btn-brass" href="#propiedades">Ver disponibles</a>
-          <a class="btn btn-ghost" href="#contacto">Pedir una tasación</a>
+          <a class="btn btn-ghost" id="btn-tasacion" href="#contacto" target="_blank" rel="noopener">Pedir una tasación</a>
         </div>
       </div>
       <aside class="obras" aria-label="Obras en proceso">
@@ -1515,6 +1515,7 @@ document.getElementById("dato-wa").innerHTML = `<a href="${waLink("Hola, quiero 
 document.getElementById("dato-tel").innerHTML = `<a href="tel:+${esc(CONFIG.telefono)}">${esc(CONFIG.telefonoVisible)}</a>`;
 document.getElementById("dato-mail").innerHTML = `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>`;
 document.getElementById("wa-desarrollos").href = waLink("Hola, quiero consultar por la financiación y permutas en sus desarrollos propios.");
+document.getElementById("btn-tasacion").href = waLink("Hola, quiero pedir una tasación de una propiedad.");
 document.getElementById("wa-float").href = waLink("Hola, quiero hacer una consulta");
 
 const MOTIVOS = [
