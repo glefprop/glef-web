@@ -105,6 +105,19 @@ section{padding-block:72px}
 .serv-ctas{display:flex;gap:10px;flex-wrap:wrap}
 @media (max-width:760px){.servicios{grid-template-columns:1fr}}
 
+/* mercado */
+.merc-act{margin:0;color:var(--muted);font-size:.92rem;max-width:26rem}
+.merc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+.nota-m{display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--accent);background:var(--surface);border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0 0 6px 6px;padding:20px;min-width:0}
+.nota-m .cat{font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.nota-m .dato{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.nota-m h3{font-size:1.08rem}
+.nota-m p{margin:0;color:var(--muted);font-size:.95rem}
+.nota-m .src{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);font-size:.85rem;color:var(--muted)}
+.nota-m .src a{color:var(--accent)}
+.nosotros{padding-top:0}
+#mercado + #nosotros .nos-grid{border-top:0}
+
 /* nosotros */
 .nosotros{padding-block:0 72px}
 .nos-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;border-top:1px solid var(--line);padding-top:56px}
@@ -206,6 +219,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
     <nav class="links">
       <a class="hide-sm" href="#servicios">Servicios</a>
       <a class="hide-sm" href="#propiedades">Propiedades</a>
+      <a class="hide-sm" href="#mercado">Mercado</a>
       <a class="hide-sm" href="#nosotros">Nosotros</a>
       <a class="btn btn-brass" href="#contacto">Contacto</a>
     </nav>
@@ -293,6 +307,16 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="mercado">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Mercado inmobiliario</div><h2>Qué está pasando en Córdoba y en el país</h2></div>
+        <p class="merc-act">Datos recopilados de portales, cámaras y medios. Actualizado al <span id="merc-fecha"></span>.</p>
+      </div>
+      <div class="merc-grid" id="merc-grid"></div>
     </div>
   </section>
 
@@ -575,6 +599,83 @@ const PROPIEDADES = [
  }
 ];
 
+/* ===== MERCADO: notas y datos del sector ===== */
+const MERCADO_ACTUALIZADO = "16 de octubre de 2026";
+const MERCADO = [
+ {
+  "cat": "Córdoba · Actividad",
+  "dato": "-9%",
+  "titulo": "Las escrituras caen en 2026 y el tercer trimestre fue el peor",
+  "texto": "Entre enero y septiembre se firmaron 39.782 escrituras en la provincia, 3.944 menos que en 2025. El tercer trimestre bajó 12,2% y septiembre cerró con 5.053 actos, 13,1% por debajo del año anterior. Solo marzo y junio crecieron.",
+  "fuente": "Colegio de Escribanos de Córdoba vía Perfil",
+  "fecha": "8 oct 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/escrituras-en-cordoba-caen-9-en-2026-y-el-tercer-trimestre-acentua-la-baja.phtml"
+ },
+ {
+  "cat": "Córdoba · Qué se vende",
+  "dato": "50%",
+  "titulo": "Los departamentos ya son la mitad de las ventas",
+  "texto": "Según la Cámara de Corredores Inmobiliarios, la actividad acumula -9% a agosto. Los departamentos concentran el 50,3% de las operaciones y crecen 6,6%, los lotes suben 5,7% y las casas y dúplex caen 38,4%. El segmento comercial crece 13%.",
+  "fuente": "CACIC vía Perfil",
+  "fecha": "24 sep 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/radiografia-del-sector-inmobiliario-cordobes-efecto-serrucho-barrera-del-credito-y-una-rentabilidad-que-tienta-a-inversores.phtml"
+ },
+ {
+  "cat": "Córdoba · Crédito",
+  "dato": "3,1%",
+  "titulo": "Muy pocas compras se hacen con hipoteca",
+  "texto": "Solo el 3,1% de las ventas de enero a agosto usó crédito hipotecario, contra cerca del 15% un año antes. Para un crédito de USD 100.000 se necesita un ingreso familiar cercano a $4,3 millones, y entre el 90% y el 95% de los préstamos los otorga el Banco Nación.",
+  "fuente": "CACIC vía Perfil",
+  "fecha": "24 sep 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/radiografia-del-sector-inmobiliario-cordobes-efecto-serrucho-barrera-del-credito-y-una-rentabilidad-que-tienta-a-inversores.phtml"
+ },
+ {
+  "cat": "Córdoba · Inversión",
+  "dato": "5,3–6,1%",
+  "titulo": "Renta neta anual en dólares por alquilar",
+  "texto": "La renta neta de un departamento alquilado ronda entre 5,3% y 6,1% anual en dólares según la zona. Sumando lo que se valorizó la propiedad en el último año, el retorno total va de 16,2% a 24,3%, con el Centro a la cabeza en unidades de 1 y 2 dormitorios. La vacancia residencial es de 7,4%.",
+  "fuente": "CACIC vía Perfil",
+  "fecha": "24 sep 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/radiografia-del-sector-inmobiliario-cordobes-efecto-serrucho-barrera-del-credito-y-una-rentabilidad-que-tienta-a-inversores.phtml"
+ },
+ {
+  "cat": "Córdoba Capital · Precios",
+  "dato": "USD 1.529",
+  "titulo": "Valor de referencia del m² de departamentos en venta",
+  "texto": "Es la mediana del metro cuadrado de los departamentos publicados en Córdoba Capital, sobre más de 10.000 avisos. El precio típico de un departamento publicado ronda los USD 106.000.",
+  "fuente": "Monitor inmobiliario de Mudafy",
+  "fecha": "oct 2026",
+  "url": "https://mudafy.com.ar/monitor-inmobiliario/cordoba"
+ },
+ {
+  "cat": "Córdoba Capital · Alquileres",
+  "dato": "$619.000",
+  "titulo": "Alquiler promedio de un departamento de 1 dormitorio",
+  "texto": "En el primer trimestre los alquileres subieron 11,1%, por encima de la inflación del período. Nueva Córdoba es el barrio más caro y General Bustos de los más accesibles. La rentabilidad bruta promedio es de 7,8% anual, unos 12,8 años de alquiler para recuperar la compra.",
+  "fuente": "Zonaprop vía InfoNegocios",
+  "fecha": "abr 2026",
+  "url": "https://infonegocios.info/default/zonaprop-abre-su-excel-cuanto-sale-alquilar-hoy-un-depto-en-nueva-cordoba-y-cuanto-comprar-una-casa-en-cerro-chico"
+ },
+ {
+  "cat": "Argentina · Tasas",
+  "dato": "6% + UVA",
+  "titulo": "Banco Nación sigue con la tasa más baja",
+  "texto": "Desde diciembre de 2025 cobra 6% + UVA a clientes con cuenta sueldo, presta hasta el 75% de la tasación y la cuota no puede superar el 25% de los ingresos. En los bancos privados las tasas bajaron durante 2026 y van de 6,9% a 12,5% según banco y condición de cliente.",
+  "fuente": "iProfesional y La Gaceta",
+  "fecha": "ene–abr 2026",
+  "url": "https://www.lagaceta.com.ar/nota/1132415/economia/creditos-hipotecarios-gigante-bancario-baja-tasa-acelera-competencia.html"
+ },
+ {
+  "cat": "Argentina · Crédito",
+  "dato": "-20%",
+  "titulo": "Menos créditos hipotecarios en el país",
+  "texto": "En el primer trimestre de 2026 se otorgaron 6.667 créditos hipotecarios en todo el país, 20% menos que un año antes. El 62% se concentró en CABA y provincia de Buenos Aires, y nueve de cada diez los dio el Banco Nación.",
+  "fuente": "Fundación Tejido Urbano vía Ámbito",
+  "fecha": "27 abr 2026",
+  "url": "https://www.ambito.com/real-estate/los-creditos-hipotecarios-caen-20-el-primer-trimestre-pese-mejora-marzo-que-el-62-los-prestamos-son-caba-y-provincia-buenos-aires-n6271289"
+ }
+];
+
 /* ===== OBRAS EN PROCESO ===== */
 const OBRAS = [
  {
@@ -712,6 +813,16 @@ document.getElementById("obras-list").innerHTML = OBRAS.map(o => `
     <span><b>${esc(o.titulo)}</b><small>${esc(o.zona)}</small><span class="tag">${esc(o.estado)}</span></span>
   </button>`).join("");
 document.getElementById("obras-list").addEventListener("click", e => { const t = e.target.closest("[data-open]"); if(t) abrir(t.dataset.open); });
+
+document.getElementById("merc-fecha").textContent = MERCADO_ACTUALIZADO;
+document.getElementById("merc-grid").innerHTML = MERCADO.map(n => `
+  <article class="nota-m">
+    <div class="cat">${esc(n.cat)}</div>
+    <div class="dato">${esc(n.dato)}</div>
+    <h3>${esc(n.titulo)}</h3>
+    <p>${esc(n.texto)}</p>
+    <div class="src">Fuente: <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.fuente)}</a> · ${esc(n.fecha)}</div>
+  </article>`).join("");
 
 render("Todas");
 </script>
