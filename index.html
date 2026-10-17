@@ -73,6 +73,17 @@ nav.links a:hover{opacity:1}
 .ficha dt{opacity:.6}
 .ficha dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
 .ficha .hd{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed color-mix(in srgb,var(--sierra-ink) 30%,transparent);padding-bottom:10px;margin-bottom:12px}
+.obras{min-width:0;display:flex;flex-direction:column;gap:12px}
+.obras-hd{display:flex;justify-content:space-between;font:500 .78rem var(--mono);letter-spacing:.12em;border-bottom:1px dashed color-mix(in srgb,var(--sierra-ink) 35%,transparent);padding-bottom:10px}
+#obras-list{display:grid;gap:12px}
+.obra{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;text-align:left;width:100%;padding:10px;border:1px solid color-mix(in srgb,var(--sierra-ink) 22%,transparent);border-radius:6px;background:color-mix(in srgb,var(--sierra-ink) 6%,transparent);color:var(--sierra-ink);font:inherit;cursor:pointer}
+.obra:hover{background:color-mix(in srgb,var(--sierra-ink) 12%,transparent)}
+.obra .th{aspect-ratio:4/3;max-width:100%;border-radius:4px;overflow:hidden;background:color-mix(in srgb,var(--sierra-ink) 10%,transparent)}
+.obra .th img{width:100%;height:100%;object-fit:cover;display:block}
+.obra b{display:block;font-family:var(--serif);font-size:1.05rem;line-height:1.25}
+.obra small{display:block;opacity:.8;font-size:.9rem;margin-top:4px}
+.obra .tag{display:inline-block;margin-top:8px;font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--sierra-ink);color:var(--sierra)}
+@media (max-width:420px){.obra{grid-template-columns:110px 1fr;gap:12px}}
 @media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:40px 48px}}
 
 section{padding-block:72px}
@@ -149,7 +160,7 @@ section{padding-block:72px}
 .dlg-info{display:flex;flex-direction:column;gap:12px;min-width:0}
 .dlg-info h2{font-size:clamp(1.5rem,3vw,2.1rem)}
 .dlg-info p{margin:0}
-.dlg-info .btn{align-self:flex-start;margin-top:6px}
+.dlg-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 @media (max-width:760px){.dlg-body{grid-template-columns:1fr;padding:16px}}
 
 /* contacto */
@@ -206,26 +217,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
           <a class="btn btn-ghost" href="#contacto">Pedir una tasación</a>
         </div>
       </div>
-      <aside class="ficha" aria-label="Desarrollo destacado">
-        <div class="hd"><span>DESARROLLO PROPIO</span><span>Q. DE MANANTIALES</span></div>
-        <svg viewBox="0 0 320 150" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <line x1="6" y1="138" x2="314" y2="138" stroke-dasharray="4 4" opacity=".5"/>
-          <path d="M28 138V60l66-38 66 38v78"/><path d="M160 138V60l66-38 66 38v78"/>
-          <rect x="48" y="78" width="30" height="22"/><rect x="110" y="78" width="30" height="22"/>
-          <rect x="180" y="78" width="30" height="22"/><rect x="242" y="78" width="30" height="22"/>
-          <rect x="78" y="108" width="32" height="30"/><rect x="210" y="108" width="32" height="30"/>
-          <line x1="40" y1="70" x2="148" y2="70" opacity=".5"/><line x1="172" y1="70" x2="280" y2="70" opacity=".5"/>
-          <text x="94" y="15" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" font-family="IBM Plex Mono, monospace">UNIDAD 1</text>
-          <text x="226" y="15" fill="currentColor" stroke="none" font-size="9" text-anchor="middle" font-family="IBM Plex Mono, monospace">UNIDAD 2</text>
-        </svg>
-        <dl>
-          <dt>Tipología</dt><dd>Dúplex 3 dormitorios</dd>
-          <dt>Sup. cubierta</dt><dd>135 m²</dd>
-          <dt>Baños</dt><dd>2</dd>
-          <dt>Calefacción</dt><dd>Caldera</dd>
-          <dt>Entrega</dt><dd>Ene/Feb 2027</dd>
-          <dt>Contado</dt><dd>USD 145.000</dd>
-        </dl>
+      <aside class="obras" aria-label="Obras en proceso">
+        <div class="obras-hd"><span>OBRAS EN PROCESO</span><span id="obras-n"></span></div>
+        <div id="obras-list"></div>
       </aside>
     </div>
   </div>
@@ -487,6 +481,33 @@ const PROPIEDADES = [
  }
 ];
 
+/* ===== OBRAS EN PROCESO ===== */
+const OBRAS = [
+ {
+  "id": "obra-duplex-manantiales",
+  "operacion": "Obra en proceso",
+  "tipo": "duplex",
+  "estado": "Entrega ene/feb 2027",
+  "titulo": "2 dúplex en Quebradas de Manantiales",
+  "zona": "Quebradas de Manantiales, Córdoba",
+  "specs": ["2 unidades", "135 m² cub. c/u", "3 dorm.", "2 baños + toilette"],
+  "descripcion": ["Desarrollo propio de dos dúplex de 3 dormitorios en el mismo lote, en barrio con acceso controlado y seguridad. Construcción tradicional, calefacción por caldera y cochera."],
+  "verPropiedad": "duplex-manantiales",
+  "fotos": ["obras/duplex-manantiales-1.jpg"]
+ },
+ {
+  "id": "obra-humberto-primo",
+  "operacion": "Obra en proceso",
+  "tipo": "oficina",
+  "estado": "Remodelación",
+  "titulo": "Cafetería y 2 plantas de oficinas en Humberto Primo 675",
+  "zona": "Humberto Primo 675, frente a Capitalinas, Córdoba",
+  "specs": ["Edificio antiguo reciclado", "Cafetería en planta baja", "2 plantas de oficinas"],
+  "descripcion": ["Remodelación integral de un edificio antiguo frente a Capitalinas: cafetería en planta baja y dos plantas de oficinas, con fachada nueva de chapa perforada, iluminación y terraza verde."],
+  "fotos": ["obras/humberto-primo-1.jpg", "obras/humberto-primo-2.jpg"]
+ }
+];
+
 /* ===== no hace falta tocar debajo de esta línea ===== */
 const ICONOS = {
   duplex:'<svg viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 66V30l26-20 26 20v36M60 66V30l26-20 26 20v36"/><rect x="26" y="46" width="14" height="20"/><rect x="78" y="46" width="14" height="20"/><line x1="2" y1="66" x2="118" y2="66"/></svg>',
@@ -536,7 +557,7 @@ function render(filtro){
 
 const dlg = document.getElementById("ficha");
 function abrir(id){
-  const p = PROPIEDADES.find(x => x.id === id); if(!p) return;
+  const p = PROPIEDADES.find(x => x.id === id) || OBRAS.find(x => x.id === id); if(!p) return;
   const fs = p.fotos && p.fotos.length ? p.fotos : [null];
   dlg.querySelector(".dlg-body").innerHTML = `
     <div class="gal" data-tipo="${esc(p.tipo)}">
@@ -547,13 +568,17 @@ function abrir(id){
       <div class="eyebrow">${esc(p.operacion)} · ${esc(p.estado || "")}</div>
       <h2>${esc(p.titulo)}</h2>
       <div class="zona">${esc(p.zona)}</div>
-      <div class="precio">${esc(p.precio)}${p.precioNota ? `<small>${esc(p.precioNota)}</small>` : ""}</div>
+      ${p.precio ? `<div class="precio">${esc(p.precio)}${p.precioNota ? `<small>${esc(p.precioNota)}</small>` : ""}</div>` : ""}
       <ul class="specs">${(p.specs||[]).map(s => `<li>${esc(s)}</li>`).join("")}</ul>
       ${(p.descripcion||[]).map(t => `<p>${esc(t)}</p>`).join("")}
       ${p.extras && p.extras.length ? `<ul class="extras">${p.extras.map(e => `<li>${esc(e)}</li>`).join("")}</ul>` : ""}
       ${p.nota ? `<div class="nota">${esc(p.nota)}</div>` : ""}
-      <a class="btn btn-solid" href="${waLink("Hola, quiero consultar por: " + p.titulo)}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      <div class="dlg-ctas">
+        <a class="btn btn-solid" href="${waLink("Hola, quiero consultar por: " + p.titulo)}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+        ${p.verPropiedad ? `<button type="button" class="btn btn-line" data-goto="${esc(p.verPropiedad)}">Ver precio y ficha</button>` : ""}
+      </div>
     </div>`;
+  const g = dlg.querySelector("[data-goto]"); if(g) g.addEventListener("click", () => abrir(g.dataset.goto));
   dlg.querySelectorAll(".gal-thumbs button").forEach(b => b.addEventListener("click", () => {
     const main = dlg.querySelector(".gal-main");
     main.innerHTML = foto(p, +b.dataset.i, "main");
@@ -584,6 +609,14 @@ const MOTIVOS = [
   ["Otra consulta", "Hola, quiero hacer una consulta."]
 ];
 document.getElementById("wa-opts").innerHTML = MOTIVOS.map(([t,m]) => `<a class="wa-opt" href="${waLink(m)}" target="_blank" rel="noopener"><span>${esc(t)}</span><span aria-hidden="true">&rarr;</span></a>`).join("");
+
+document.getElementById("obras-n").textContent = OBRAS.length + (OBRAS.length === 1 ? " obra" : " obras");
+document.getElementById("obras-list").innerHTML = OBRAS.map(o => `
+  <button type="button" class="obra" data-open="${esc(o.id)}">
+    <span class="th" data-tipo="${esc(o.tipo)}">${foto(o,0)}</span>
+    <span><b>${esc(o.titulo)}</b><small>${esc(o.zona)}</small><span class="tag">${esc(o.estado)}</span></span>
+  </button>`).join("");
+document.getElementById("obras-list").addEventListener("click", e => { const t = e.target.closest("[data-open]"); if(t) abrir(t.dataset.open); });
 
 render("Todas");
 </script>
