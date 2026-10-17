@@ -153,6 +153,12 @@ section{padding-block:72px}
 @media (max-width:760px){.dlg-body{grid-template-columns:1fr;padding:16px}}
 
 /* contacto */
+.wa-box{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.wa-box p{margin:0;color:var(--muted)}
+.wa-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wa-opt{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border:1.5px solid var(--line);border-radius:6px;text-decoration:none;font-weight:600;color:var(--ink);background:var(--bg)}
+.wa-opt:hover{border-color:#1F9E55;color:#1F9E55}
+@media (max-width:540px){.wa-opts{grid-template-columns:1fr}}
 .contacto{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
 .datos p{margin:0 0 6px}
 .datos .lbl{font:500 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:18px}
@@ -271,30 +277,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
       <div class="datos">
         <div class="eyebrow">Contacto</div>
         <h2 style="margin:8px 0 16px;font-size:clamp(1.8rem,3.4vw,2.6rem)">Consultas, tasaciones y captación</h2>
-        <p>¿Querés vender, alquilar o tasar? Escribinos y te respondemos a la brevedad.</p>
+        <p>¿Querés comprar, vender, alquilar o tasar? Escribinos y te respondemos a la brevedad.</p>
         <p class="lbl">WhatsApp</p><p id="dato-wa"></p>
         <p class="lbl">Llamadas</p><p id="dato-tel"></p>
         <p class="lbl">Email</p><p id="dato-mail"></p>
         <p class="lbl">Zona</p><p>Córdoba, Argentina</p>
         <p class="lbl">Responsable</p><p>Lorenzo Ghione · Martillero Público y Corredor Inmobiliario · Matrícula CPI N° 8518</p>
       </div>
-      <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="empresa" id="form">
-        <input type="hidden" name="form-name" value="contacto">
-        <p hidden><label>No completar <input name="empresa" id="f-hp"></label></p>
-        <div class="row">
-          <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" required autocomplete="name"></label>
-          <label for="f-tel">Teléfono<input id="f-tel" name="telefono" type="tel" required autocomplete="tel"></label>
-        </div>
-        <label for="f-motivo">Motivo
-          <select id="f-motivo" name="motivo">
-            <option>Quiero comprar</option><option>Quiero alquilar</option><option>Quiero vender mi propiedad</option>
-            <option>Quiero poner mi propiedad en alquiler</option><option>Necesito una tasación</option><option>Otro</option>
-          </select>
-        </label>
-        <label for="f-msg">Mensaje<textarea id="f-msg" name="mensaje" placeholder="Contanos qué buscás o qué propiedad tenés"></textarea></label>
-        <div><button class="btn btn-solid" type="submit">Enviar consulta</button></div>
-        <p class="msg" id="form-msg" role="status"></p>
-      </form>
+      <div class="wa-box">
+        <h3>Escribinos por WhatsApp</h3>
+        <p>Elegí qué necesitás y se abre el chat con el mensaje listo para enviar.</p>
+        <div class="wa-opts" id="wa-opts"></div>
+      </div>
     </div>
   </section>
 </main>
@@ -581,18 +575,15 @@ document.getElementById("dato-tel").innerHTML = `<a href="tel:+${esc(CONFIG.tele
 document.getElementById("dato-mail").innerHTML = `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>`;
 document.getElementById("wa-float").href = waLink("Hola, quiero hacer una consulta");
 
-document.getElementById("form").addEventListener("submit", async e => {
-  e.preventDefault();
-  const f = e.target, msg = document.getElementById("form-msg");
-  msg.textContent = "Enviando...";
-  try{
-    const r = await fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:new URLSearchParams(new FormData(f)).toString()});
-    if(!r.ok) throw 0;
-    f.reset(); msg.textContent = "Consulta enviada. Te contactamos a la brevedad.";
-  }catch(_){
-    msg.textContent = "No se pudo enviar desde esta vista. Escribinos por WhatsApp o email.";
-  }
-});
+const MOTIVOS = [
+  ["Quiero comprar", "Hola, estoy buscando una propiedad para comprar."],
+  ["Quiero alquilar", "Hola, estoy buscando una propiedad para alquilar."],
+  ["Quiero vender mi propiedad", "Hola, quiero vender mi propiedad. ¿Me pueden asesorar?"],
+  ["Quiero poner mi propiedad en alquiler", "Hola, tengo una propiedad para alquilar y me interesa la administración."],
+  ["Necesito una tasación", "Hola, necesito una tasación de una propiedad."],
+  ["Otra consulta", "Hola, quiero hacer una consulta."]
+];
+document.getElementById("wa-opts").innerHTML = MOTIVOS.map(([t,m]) => `<a class="wa-opt" href="${waLink(m)}" target="_blank" rel="noopener"><span>${esc(t)}</span><span aria-hidden="true">&rarr;</span></a>`).join("");
 
 render("Todas");
 </script>
