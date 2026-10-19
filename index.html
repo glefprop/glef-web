@@ -1389,7 +1389,7 @@ const PROPIEDADES = [
 ];
 
 /* ===== MERCADO: notas y datos del sector ===== */
-const MERCADO_ACTUALIZADO = "16 de octubre de 2026";
+const MERCADO_ACTUALIZADO = "19 de octubre de 2026";
 const MERCADO = [
  {
   "cat": "Córdoba · Actividad",
@@ -1401,22 +1401,40 @@ const MERCADO = [
   "url": "https://www.perfil.com/noticias/cordoba/escrituras-en-cordoba-caen-9-en-2026-y-el-tercer-trimestre-acentua-la-baja.phtml"
  },
  {
-  "cat": "Córdoba · Qué se vende",
-  "dato": "50%",
-  "titulo": "Los departamentos ya son la mitad de las ventas",
-  "texto": "Según la Cámara de Corredores Inmobiliarios, la actividad acumula -9% a agosto. Los departamentos concentran el 50,3% de las operaciones y crecen 6,6%, los lotes suben 5,7% y las casas y dúplex caen 38,4%. El segmento comercial crece 13%.",
-  "fuente": "CACIC vía Perfil",
-  "fecha": "24 sep 2026",
-  "url": "https://www.perfil.com/noticias/cordoba/radiografia-del-sector-inmobiliario-cordobes-efecto-serrucho-barrera-del-credito-y-una-rentabilidad-que-tienta-a-inversores.phtml"
+  "cat": "Córdoba · Alquileres",
+  "dato": "-13,6%",
+  "titulo": "Los contratos nuevos quedan debajo de la inflación",
+  "texto": "En septiembre, un departamento que se vuelve a alquilar sale 15,3% más en pesos que el contrato que vence, pero descontada la inflación queda 13,6% por debajo. En casas la baja real es de 12% y en locales de 9,4%. En Nueva Córdoba, un departamento de un dormitorio ronda hoy entre $550.000 y $600.000.",
+  "fuente": "Colegio Profesional de Inmobiliarios vía Perfil y Cadena 3",
+  "fecha": "13 oct 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/la-oferta-esta-muy-por-encima-de-la-demanda-los-alquileres-bajaron-hasta-136-en-cordoba.phtml"
  },
  {
-  "cat": "Córdoba · Crédito",
-  "dato": "3,1%",
-  "titulo": "Muy pocas compras se hacen con hipoteca",
-  "texto": "Solo el 3,1% de las ventas de enero a agosto usó crédito hipotecario, contra cerca del 15% un año antes. Para un crédito de USD 100.000 se necesita un ingreso familiar cercano a $4,3 millones, y entre el 90% y el 95% de los préstamos los otorga el Banco Nación.",
-  "fuente": "CACIC vía Perfil",
-  "fecha": "24 sep 2026",
-  "url": "https://www.perfil.com/noticias/cordoba/radiografia-del-sector-inmobiliario-cordobes-efecto-serrucho-barrera-del-credito-y-una-rentabilidad-que-tienta-a-inversores.phtml"
+  "cat": "Córdoba · Oferta y vacancia",
+  "dato": "+96%",
+  "titulo": "Casi el doble de viviendas para alquilar que a fines de 2023",
+  "texto": "La oferta de viviendas en alquiler es 96,5% mayor que el promedio de septiembre a diciembre de 2023. Aun así, en agosto las operaciones de alquiler cayeron 46,5% y las compraventas 43,7% contra un año antes. La vacancia de viviendas es de 5,7% y la de locales comerciales bajó a 11,1%.",
+  "fuente": "Colegio Profesional de Inmobiliarios vía Cadena 3",
+  "fecha": "13 oct 2026",
+  "url": "https://www.cadena3.com/noticia/viva-la-radio/alquileres-en-cordoba-la-oferta-crecio-casi-al-doble-pero-las-operaciones-cayeron-un-465_602999"
+ },
+ {
+  "cat": "Córdoba Capital · Precios",
+  "dato": "+12%",
+  "titulo": "El m² de los departamentos en venta sube en todas las zonas",
+  "texto": "A fines de septiembre, el precio mediano del m² de departamentos publicados subió 1,1% en el mes y 12% en un año. El Centro es la zona más cara con USD 1.711 por m², seguida por el Este con USD 1.667. El Sur es la que más subió en el año, 16,9%. En casas el valor quedó estable en el mes y sube 8,8% interanual.",
+  "fuente": "Mercado Libre y UdeSA vía Perfil",
+  "fecha": "6 oct 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/mercado-inmobiliario-en-cordoba-los-departamentos-no-frenan-y-las-casas-se-quedaron-en-stand-by.phtml"
+ },
+ {
+  "cat": "Córdoba Capital · Alquileres",
+  "dato": "$13.131",
+  "titulo": "Precio mediano del m² de departamentos en alquiler",
+  "texto": "El valor publicado por m² de departamentos en alquiler subió 0,7% en septiembre y 29,8% en el último año. En casas el m² bajó 4,8% en el mes, a $7.510, con una suba interanual de 27,6%. Nueva Córdoba, Centro y Alberdi son los barrios más buscados.",
+  "fuente": "Mercado Libre y UdeSA vía Perfil",
+  "fecha": "6 oct 2026",
+  "url": "https://www.perfil.com/noticias/cordoba/mercado-inmobiliario-en-cordoba-los-departamentos-no-frenan-y-las-casas-se-quedaron-en-stand-by.phtml"
  },
  {
   "cat": "Córdoba · Inversión",
@@ -1428,40 +1446,22 @@ const MERCADO = [
   "url": "https://www.perfil.com/noticias/cordoba/radiografia-del-sector-inmobiliario-cordobes-efecto-serrucho-barrera-del-credito-y-una-rentabilidad-que-tienta-a-inversores.phtml"
  },
  {
-  "cat": "Córdoba Capital · Precios",
-  "dato": "USD 1.529",
-  "titulo": "Valor de referencia del m² de departamentos en venta",
-  "texto": "Es la mediana del metro cuadrado de los departamentos publicados en Córdoba Capital, sobre más de 10.000 avisos. El precio típico de un departamento publicado ronda los USD 106.000.",
-  "fuente": "Monitor inmobiliario de Mudafy",
-  "fecha": "oct 2026",
-  "url": "https://mudafy.com.ar/monitor-inmobiliario/cordoba"
- },
- {
-  "cat": "Córdoba Capital · Alquileres",
-  "dato": "$619.000",
-  "titulo": "Alquiler promedio de un departamento de 1 dormitorio",
-  "texto": "En el primer trimestre los alquileres subieron 11,1%, por encima de la inflación del período. Nueva Córdoba es el barrio más caro y General Bustos de los más accesibles. La rentabilidad bruta promedio es de 7,8% anual, unos 12,8 años de alquiler para recuperar la compra.",
-  "fuente": "Zonaprop vía InfoNegocios",
-  "fecha": "abr 2026",
-  "url": "https://infonegocios.info/default/zonaprop-abre-su-excel-cuanto-sale-alquilar-hoy-un-depto-en-nueva-cordoba-y-cuanto-comprar-una-casa-en-cerro-chico"
- },
- {
   "cat": "Argentina · Tasas",
-  "dato": "6% + UVA",
-  "titulo": "Banco Nación sigue con la tasa más baja",
-  "texto": "Desde diciembre de 2025 cobra 6% + UVA a clientes con cuenta sueldo, presta hasta el 75% de la tasación y la cuota no puede superar el 25% de los ingresos. En los bancos privados las tasas bajaron durante 2026 y van de 6,9% a 12,5% según banco y condición de cliente.",
-  "fuente": "iProfesional y La Gaceta",
-  "fecha": "ene–abr 2026",
-  "url": "https://www.lagaceta.com.ar/nota/1132415/economia/creditos-hipotecarios-gigante-bancario-baja-tasa-acelera-competencia.html"
+  "dato": "7,5% + UVA",
+  "titulo": "La tasa más repetida entre los bancos privados",
+  "texto": "En octubre, Hipotecario, Santander, Macro, BBVA, Galicia, Supervielle y otros cobran 7,5% anual más UVA. Las más bajas son Banco Ciudad con 6,5% y Banco Nación con 6,7% para quienes cobran el sueldo ahí; ICBC ofrece 6,9% a sus clientes. En Córdoba, Bancor está en 8,9%.",
+  "fuente": "Ámbito",
+  "fecha": "17 oct 2026",
+  "url": "https://www.ambito.com/economia/que-banco-tiene-la-tasa-mas-baja-creditos-hipotecarios-octubre-2026-n6334271"
  },
  {
   "cat": "Argentina · Crédito",
-  "dato": "-20%",
-  "titulo": "Menos créditos hipotecarios en el país",
-  "texto": "En el primer trimestre de 2026 se otorgaron 6.667 créditos hipotecarios en todo el país, 20% menos que un año antes. El 62% se concentró en CABA y provincia de Buenos Aires, y nueve de cada diez los dio el Banco Nación.",
-  "fuente": "Fundación Tejido Urbano vía Ámbito",
-  "fecha": "27 abr 2026",
-  "url": "https://www.ambito.com/real-estate/los-creditos-hipotecarios-caen-20-el-primer-trimestre-pese-mejora-marzo-que-el-62-los-prestamos-son-caba-y-provincia-buenos-aires-n6271289"
+  "dato": "-37%",
+  "titulo": "Los hipotecarios repuntan pero siguen lejos de 2025",
+  "texto": "Entre enero y septiembre se dieron unos 20.900 créditos hipotecarios en el país, 37% menos que en igual período de 2025, aunque desde junio la cantidad viene en alza y en septiembre llegó a cerca de 3.600. La tasa ofrecida promedio bajó de 8,7% a 7,7% entre julio y septiembre. Córdoba concentra el 6,4% de los préstamos.",
+  "fuente": "OFAVA vía El Cronista",
+  "fecha": "15 oct 2026",
+  "url": "https://www.cronista.com/finanzas-mercados/creditos-hipotecarios-el-mercado-repunta-pero-esta-lejos-de-niveles-de-2025-y-se-concentra-en-pocos-bancos/"
  }
 ];
 
