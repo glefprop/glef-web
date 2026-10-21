@@ -445,7 +445,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <div class="eyebrow">Contacto</div>
         <h2 style="margin:8px 0 16px;font-size:clamp(1.8rem,3.4vw,2.6rem)">Consultas, tasaciones y captación</h2>
         <p>¿Querés comprar, vender, alquilar o tasar? Escribinos y te respondemos a la brevedad.</p>
-        <p class="lbl">WhatsApp</p><p id="dato-wa"></p><p id="dato-wa2"></p>
+        <p class="lbl">WhatsApp ventas y consultas</p><p id="dato-wa"></p>
+        <p class="lbl">WhatsApp administración de alquileres</p><p id="dato-wa2"></p>
         <p class="lbl">Llamadas</p><p id="dato-tel"></p>
         <p class="lbl">Email</p><p id="dato-mail"></p>
         <p class="lbl">Zona</p><p>Córdoba, Argentina</p>
@@ -1517,6 +1518,7 @@ const ICONOS = {
 };
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const waLink = txt => CONFIG.whatsapp ? `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}` : "#contacto";
+const waAdmin = txt => `https://wa.me/${CONFIG.whatsapp2}?text=${encodeURIComponent(txt)}`;
 
 function imgErr(img){
   const src = img.getAttribute("src") || "";
@@ -1596,7 +1598,7 @@ document.querySelectorAll(".filtros button").forEach(b => b.addEventListener("cl
 }));
 
 document.getElementById("dato-wa").innerHTML = `<a href="${waLink("Hola, quiero hacer una consulta")}" target="_blank" rel="noopener">${esc(CONFIG.whatsappVisible)}</a>`;
-document.getElementById("dato-wa2").innerHTML = `<a href="https://wa.me/${CONFIG.whatsapp2}?text=${encodeURIComponent("Hola, quiero hacer una consulta")}" target="_blank" rel="noopener">${esc(CONFIG.whatsapp2Visible)}</a>`;
+document.getElementById("dato-wa2").innerHTML = `<a href="${waAdmin("Hola, quiero hacer una consulta sobre administración de alquileres.")}" target="_blank" rel="noopener">${esc(CONFIG.whatsapp2Visible)}</a>`;
 document.getElementById("dato-tel").innerHTML = `<a href="tel:+${esc(CONFIG.telefono)}">${esc(CONFIG.telefonoVisible)}</a>`;
 document.getElementById("dato-mail").innerHTML = `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>`;
 document.getElementById("wa-desarrollos").href = waLink("Hola, quiero consultar por la financiación y permutas en sus desarrollos propios.");
@@ -1607,11 +1609,11 @@ const MOTIVOS = [
   ["Quiero comprar", "Hola, estoy buscando una propiedad para comprar."],
   ["Quiero alquilar", "Hola, estoy buscando una propiedad para alquilar."],
   ["Quiero vender mi propiedad", "Hola, quiero vender mi propiedad. ¿Me pueden asesorar?"],
-  ["Quiero poner mi propiedad en alquiler", "Hola, tengo una propiedad para alquilar y me interesa la administración."],
+  ["Quiero poner mi propiedad en alquiler", "Hola, tengo una propiedad para alquilar y me interesa la administración.", "admin"],
   ["Necesito una tasación", "Hola, necesito una tasación de una propiedad."],
   ["Otra consulta", "Hola, quiero hacer una consulta."]
 ];
-document.getElementById("wa-opts").innerHTML = MOTIVOS.map(([t,m]) => `<a class="wa-opt" href="${waLink(m)}" target="_blank" rel="noopener"><span>${esc(t)}</span><span aria-hidden="true">&rarr;</span></a>`).join("");
+document.getElementById("wa-opts").innerHTML = MOTIVOS.map(([t,m,d]) => `<a class="wa-opt" href="${d === "admin" ? waAdmin(m) : waLink(m)}" target="_blank" rel="noopener"><span>${esc(t)}</span><span aria-hidden="true">&rarr;</span></a>`).join("");
 
 document.getElementById("obras-n").textContent = OBRAS.length + (OBRAS.length === 1 ? " obra" : " obras");
 document.getElementById("obras-list").innerHTML = OBRAS.map(o => `
@@ -1723,7 +1725,7 @@ document.getElementById("merc-grid").innerHTML = MERCADO.map(n => `
   $("calc-form").addEventListener("input", calc);
   $("calc-form").addEventListener("submit", e => e.preventDefault());
   $("c-monto").addEventListener("blur", e => { const n = parseNum(e.target.value); if(n) e.target.value = Math.round(n).toLocaleString("es-AR"); });
-  $("c-wa").href = waLink("Hola, quiero consultar por la administración de mi alquiler.");
+  $("c-wa").href = waAdmin("Hola, quiero consultar por la administración de mi alquiler.");
   calc();
 
   // Si hay datos más nuevos en la API oficial, los suma
