@@ -445,8 +445,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <div class="eyebrow">Contacto</div>
         <h2 style="margin:8px 0 16px;font-size:clamp(1.8rem,3.4vw,2.6rem)">Consultas, tasaciones y captación</h2>
         <p>¿Querés comprar, vender, alquilar o tasar? Escribinos y te respondemos a la brevedad.</p>
-        <p class="lbl">WhatsApp ventas y consultas</p><p id="dato-wa"></p>
-        <p class="lbl">WhatsApp administración de alquileres</p><p id="dato-wa2"></p>
+        <p class="lbl">WhatsApp</p><p id="dato-wa"></p>
         <p class="lbl">Llamadas</p><p id="dato-tel"></p>
         <p class="lbl">Email</p><p id="dato-mail"></p>
         <p class="lbl">Zona</p><p>Córdoba, Argentina</p>
@@ -470,8 +469,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 <script>
 /* ===== CONFIGURACIÓN: datos de contacto ===== */
 const CONFIG = {
-  whatsapp: "5493546573461",          // sin + ni espacios
-  whatsappVisible: "+54 9 3546 57-3461",
+  whatsapp: "5493513083830",          // sin + ni espacios
+  whatsappVisible: "+54 9 351 308-3830",
   whatsapp2: "5493513083830",
   whatsapp2Visible: "+54 9 351 308-3830",
   telefono: "5493513405158",
@@ -994,7 +993,6 @@ document.querySelectorAll(".filtros button").forEach(b => b.addEventListener("cl
 }));
 
 document.getElementById("dato-wa").innerHTML = `<a href="${waLink("Hola, quiero hacer una consulta")}" target="_blank" rel="noopener">${esc(CONFIG.whatsappVisible)}</a>`;
-document.getElementById("dato-wa2").innerHTML = `<a href="${waAdmin("Hola, quiero hacer una consulta sobre administración de alquileres.")}" target="_blank" rel="noopener">${esc(CONFIG.whatsapp2Visible)}</a>`;
 document.getElementById("dato-tel").innerHTML = `<a href="tel:+${esc(CONFIG.telefono)}">${esc(CONFIG.telefonoVisible)}</a>`;
 document.getElementById("dato-mail").innerHTML = `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>`;
 document.getElementById("wa-desarrollos").href = waLink("Hola, quiero consultar por la financiación y permutas en sus desarrollos propios.");
