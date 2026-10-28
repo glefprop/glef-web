@@ -230,6 +230,8 @@ section{padding-block:72px}
 .dlg-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 @media (max-width:760px){.dlg-body{grid-template-columns:1fr;padding:16px}}
 
+.foto img.rem,.gal img.rem,.obra img.rem{filter:saturate(1.1) contrast(1.05) brightness(1.02)}
+
 /* contacto */
 .wa-box{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .wa-box p{margin:0;color:var(--muted)}
@@ -547,7 +549,7 @@ const PROPIEDADES = [
   "nota": "",
   "unidades": [],
   "fotos": [
-   "obras/unquillo-1.jpg",
+   "obras/unquillo-1-portada.jpg",
    "obras/unquillo-2.jpg",
    "obras/unquillo-3.jpg",
    "obras/unquillo-4.jpg",
@@ -757,7 +759,7 @@ const PROPIEDADES = [
   "nota": "",
   "unidades": [],
   "fotos": [
-   "obras/el-dorado-1.jpg",
+   "obras/el-dorado-1-portada.jpg",
    "obras/el-dorado-2.jpg",
    "obras/el-dorado-3.jpg",
    "obras/el-dorado-4.jpg"
@@ -826,7 +828,7 @@ const PROPIEDADES = [
   "nota": "",
   "unidades": [],
   "fotos": [
-   "obras/la-ernestina-1.jpg",
+   "obras/la-ernestina-1-portada.jpg",
    "obras/la-ernestina-2.jpg"
   ]
  }
@@ -926,10 +928,19 @@ const OBRAS = [
   "estado": "Entrega ene/feb 2027",
   "titulo": "2 dúplex en Quebradas de Manantiales",
   "zona": "Quebradas de Manantiales, Córdoba",
-  "specs": ["2 unidades", "135 m² cub. c/u", "3 dorm.", "2 baños + toilette"],
-  "descripcion": ["Desarrollo propio de dos dúplex de 3 dormitorios en el mismo lote, en barrio con acceso controlado y seguridad. Construcción tradicional, calefacción por caldera y cochera."],
+  "specs": [
+   "2 unidades",
+   "135 m² cub. c/u",
+   "3 dorm.",
+   "2 baños + toilette"
+  ],
+  "descripcion": [
+   "Desarrollo propio de dos dúplex de 3 dormitorios en el mismo lote, en barrio con acceso controlado y seguridad. Construcción tradicional, calefacción por caldera y cochera."
+  ],
   "verPropiedad": "duplex-manantiales",
-  "fotos": ["obras/duplex-manantiales-1.jpg"]
+  "fotos": [
+   "obras/duplex-manantiales-1-portada.jpg"
+  ]
  },
  {
   "id": "obra-humberto-primo",
@@ -938,9 +949,18 @@ const OBRAS = [
   "estado": "Remodelación",
   "titulo": "Cafetería y 2 plantas de oficinas en Humberto Primo 675",
   "zona": "Humberto Primo 675, frente a Capitalinas, Córdoba",
-  "specs": ["Edificio antiguo reciclado", "Cafetería en planta baja", "2 plantas de oficinas"],
-  "descripcion": ["Remodelación integral de un edificio antiguo frente a Capitalinas: cafetería en planta baja y dos plantas de oficinas, con fachada nueva de chapa perforada, iluminación y terraza verde."],
-  "fotos": ["obras/humberto-primo-1.jpg", "obras/humberto-primo-2.jpg"]
+  "specs": [
+   "Edificio antiguo reciclado",
+   "Cafetería en planta baja",
+   "2 plantas de oficinas"
+  ],
+  "descripcion": [
+   "Remodelación integral de un edificio antiguo frente a Capitalinas: cafetería en planta baja y dos plantas de oficinas, con fachada nueva de chapa perforada, iluminación y terraza verde."
+  ],
+  "fotos": [
+   "obras/humberto-primo-1-portada.jpg",
+   "obras/humberto-primo-2.jpg"
+  ]
  }
 ];
 
@@ -963,7 +983,7 @@ function imgErr(img){
   img.replaceWith(Object.assign(document.createElement("span"), {className:"ph", innerHTML: ICONOS[box?.dataset.tipo] || ICONOS.casa}));
 }
 const foto = (p, i, cls="") => p.fotos && p.fotos[i]
-  ? `<img class="${cls}" src="${esc(p.fotos[i])}" alt="${esc(p.titulo)}, foto ${i+1}" loading="lazy" referrerpolicy="no-referrer" onerror="imgErr(this)">`
+  ? `<img class="${cls}${/^https?:/.test(p.fotos[i]) ? " rem" : ""}" src="${esc(p.fotos[i])}" alt="${esc(p.titulo)}, foto ${i+1}" loading="lazy" referrerpolicy="no-referrer" onerror="imgErr(this)">`
   : `<span class="ph">${ICONOS[p.tipo] || ICONOS.casa}</span>`;
 
 function render(filtro){
