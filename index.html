@@ -183,6 +183,7 @@ section{padding-block:72px}
 .card .foto svg{width:62%;height:auto;color:var(--muted)}
 .badge{position:absolute;top:12px;left:12px;font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:3px;background:var(--ink);color:var(--bg)}
 .badge.alq{background:var(--accent);color:var(--surface)}
+.estado.senado{background:#B23A2E;color:#fff;border-color:#B23A2E}
 .estado{position:absolute;top:12px;right:12px;font:500 .72rem var(--mono);padding:5px 10px;border-radius:3px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .card .body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
 .card h3{font-size:1.2rem}
@@ -595,41 +596,6 @@ const PROPIEDADES = [
   ]
  },
  {
-  "id": "depto-olmos-centro",
-  "operacion": "Venta",
-  "tipo": "depto",
-  "estado": "Reciclado",
-  "titulo": "Departamento de 1 dormitorio, piso 14 con vista abierta",
-  "zona": "Av. Emilio Olmos, Centro, Córdoba",
-  "precio": "USD 46.000",
-  "precioNota": "Apto crédito hipotecario · Expensas $85.000",
-  "specs": [
-   "34,5 m² cub.",
-   "2 amb.",
-   "1 dorm.",
-   "1 baño",
-   "Piso 14"
-  ],
-  "descripcion": [
-   "Departamento totalmente reciclado en pleno centro, en piso 14 con vista abierta y mucha luz natural.",
-   "Cocina comedor, dormitorio y baño. Cerca de transporte, comercios, universidades y oficinas: sirve para vivir, para estudiantes o como inversión para alquilar."
-  ],
-  "extras": [
-   "Totalmente reciclado",
-   "Vista panorámica",
-   "Apto crédito",
-   "Antigüedad: 15 años"
-  ],
-  "nota": "",
-  "fotos": [
-   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713293.jpg",
-   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713289.jpg",
-   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713287.jpg",
-   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713288.jpg",
-   "https://imgar.zonapropcdn.com/avisos/resize/1/00/60/36/75/50/1200x1200/2083713290.jpg"
-  ]
- },
- {
   "id": "depto-alta-cordoba-venta",
   "operacion": "Venta",
   "tipo": "depto",
@@ -737,7 +703,7 @@ const PROPIEDADES = [
   "id": "lote-el-dorado",
   "operacion": "Venta",
   "tipo": "lote",
-  "estado": "Disponible",
+  "estado": "Señado",
   "titulo": "Lote de 700 m² en barrio privado El Dorado I",
   "zona": "San Antonio de Arredondo, Valle de Punilla",
   "precio": "USD 41.500",
@@ -756,7 +722,7 @@ const PROPIEDADES = [
    "Fondo a espacio verde",
    "A 5 minutos de Carlos Paz"
   ],
-  "nota": "",
+  "nota": "Lote señado. Consultá por otros lotes en la zona.",
   "unidades": [],
   "fotos": [
    "obras/el-dorado-1-portada.jpg",
@@ -995,7 +961,7 @@ function render(filtro){
       <button type="button" class="foto" data-tipo="${esc(p.tipo)}" data-open="${esc(p.id)}" aria-label="Ver ficha: ${esc(p.titulo)}">
         ${foto(p,0)}
         <span class="badge ${p.operacion === "Alquiler" ? "alq" : ""}">${esc(p.operacion)}</span>
-        ${p.estado ? `<span class="estado">${esc(p.estado)}</span>` : ""}
+        ${p.estado ? `<span class="estado${/señad|reservad|vendid/i.test(p.estado) ? " senado" : ""}">${esc(p.estado)}</span>` : ""}
         ${p.fotos && p.fotos.length > 1 ? `<span class="nfotos">${p.fotos.length} fotos</span>` : ""}
       </button>
       <div class="body">
